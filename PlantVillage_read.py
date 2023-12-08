@@ -50,6 +50,9 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(
     x_out, y_out, test_size=0.7, shuffle=True)
 
+y_train['Y'] = y_train['Y'].astype(int)
+y_test['Y'] = y_test['Y'].astype(int)
+
 from sklearn import tree
 from sklearn.tree import export_text
 import utils.processing as proc

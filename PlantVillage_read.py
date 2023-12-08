@@ -37,10 +37,28 @@ folders = [
 y_out = pd.DataFrame(columns=list('Y'))
 x_out = pd.DataFrame(columns=range(128*128))
 for folder in folders:
-    outY, outX = load_images_from_folder("C:/data/PlantVillage-Dataset/raw/grayscale/", folder, folders)
+    outY, outX = load_images_from_folder("E:/datasets/PlantVillage-Dataset/raw/grayscale/", folder, folders)
     y_out = pd.concat([y_out, outY])
     x_out = pd.concat([x_out, outX])
 y_out = y_out.reset_index(drop=True)
 x_out = x_out.reset_index(drop=True)
 print(y_out.tail())
+
+# Split data into 50% train and 50% test subsets
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(
+    x_out, y_out, test_size=0.7, shuffle=True)
+
+from sklearn import tree
+from sklearn.tree import export_text
+import utils.processing as proc
+import utils.visuals as visu
+
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(X_train, y_train)
+y_predict = clf.predict(X_test)  # x_test_data
+
+confusion_matrix = proc.get_confusion_matrix(y_test, y_predict, folders)
+visu.save_confusion_matrix(confusion_matrix)
+
 

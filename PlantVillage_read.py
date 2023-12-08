@@ -40,6 +40,7 @@ for folder in folders:
     outY, outX = load_images_from_folder("E:/datasets/PlantVillage-Dataset/raw/grayscale/", folder, folders)
     y_out = pd.concat([y_out, outY])
     x_out = pd.concat([x_out, outX])
+cv2.destroyAllWindows()
 y_out = y_out.reset_index(drop=True)
 x_out = x_out.reset_index(drop=True)
 print(y_out.tail())

@@ -23,9 +23,16 @@ def load_images_from_folder(path_general, folder, folders):
     return y, images
 
 folders = [
-    'Apple___Apple_scab',
-    'Apple___Black_rot',
-    'Apple___Cedar_apple_rust',
+    'Tomato___Bacterial_spot',
+    'Tomato___Early_blight',
+    'Tomato___healthy',
+    'Tomato___Late_blight',
+    'Tomato___Leaf_Mold',
+    'Tomato___Septoria_leaf_spot',
+    'Tomato___Spider_mites Two-spotted_spider_mite',
+    'Tomato___Target_Spot',
+    'Tomato___Tomato_mosaic_virus',
+    'Tomato___Tomato_Yellow_Leaf_Curl_Virus'
 ]
 y_out = pd.DataFrame(columns=list('Y'))
 x_out = pd.DataFrame(columns=range(128*128))
@@ -37,4 +44,3 @@ y_out = y_out.reset_index(drop=True)
 x_out = x_out.reset_index(drop=True)
 print(y_out.tail())
 
-    # your code that does something with the return images goes here
